@@ -1,0 +1,24 @@
+High Level Planning [GHAR_2]
+
+Assembling the list guests:
+
+// THIS IS THE ONLY PART BOUND TO THE CURRENT MEGASYS FORMATTING
+// From each guest entry, find and store
+	// string name (cut off after n characters)
+	// int guestCount
+	// timeValue arrivalTime
+	// enum event
+	// string overnightGuestType
+	// List<string> oEvents
+	// 
+
+
+Outputting:
+
+// Desired output control
+	// Text size
+	// Presentation order
+	// Choice or presented items
+	// Font control
+	// Page orientation
+

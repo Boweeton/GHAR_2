@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHAR_2", "GHAR_2\GHAR_2.csproj", "{AB49878C-685A-4C76-9B28-5F16064E223E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHAR_2_Windows_Application", "GHAR_2\GHAR_2_Windows_Application.csproj", "{AB49878C-685A-4C76-9B28-5F16064E223E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHAR_2_Class_Library", "GHAR_2_Class_Library\GHAR_2_Class_Library.csproj", "{3A918878-7BF5-4DD8-B2F7-7704E071F0CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHAR_2_Console_Application", "GHAR_2_Console_Application\GHAR_2_Console_Application.csproj", "{D9D90804-F0E5-4484-BDFB-3721CDBA5D7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{AB49878C-685A-4C76-9B28-5F16064E223E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB49878C-685A-4C76-9B28-5F16064E223E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB49878C-685A-4C76-9B28-5F16064E223E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A918878-7BF5-4DD8-B2F7-7704E071F0CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A918878-7BF5-4DD8-B2F7-7704E071F0CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A918878-7BF5-4DD8-B2F7-7704E071F0CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A918878-7BF5-4DD8-B2F7-7704E071F0CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9D90804-F0E5-4484-BDFB-3721CDBA5D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D90804-F0E5-4484-BDFB-3721CDBA5D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D90804-F0E5-4484-BDFB-3721CDBA5D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D90804-F0E5-4484-BDFB-3721CDBA5D7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
