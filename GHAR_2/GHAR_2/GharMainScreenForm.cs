@@ -21,5 +21,12 @@ namespace GHAR_2
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GeneratePathsSubWindowForm generatePathsSubWindow = new GeneratePathsSubWindowForm();
+            //generatePathsSubWindow.Parent = this;
+            generatePathsSubWindow.Show();
+        }
     }
 }
