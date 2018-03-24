@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace GHAR_2
 {
-    public partial class Form1 : Form
+    public partial class GharMainScreenForm : Form
     {
-        public Form1()
+        public GharMainScreenForm()
         {
             InitializeComponent();
+        }
+
+        void OnGharMainScreenFormLoad(object sender, EventArgs e)
+        {
+
         }
     }
 }
