@@ -59,10 +59,46 @@ namespace GHAR_2_Class_Library
         /// <returns></returns>
         public List<Reservation> ParseTmlReport(string file)
         {
+            // Check for invalid file
+            if (!File.Exists(file))
+            {
+                throw new FileNotFoundException(file);
+            }
+
             // Local Declarations
             List<Reservation> localReservations = new List<Reservation>();
+            string[] fileLines = File.ReadAllLines(file);
+
+            foreach (string line in fileLines)
+            {
+                // Check to see if line has a reservation in it
+                if (IsValidTmlReservationLine(line))
+                {
+                    Reservation tmpRes = new Reservation();
+
+                    // Read out / set the Name
+
+                    // Read out / set the DepartureDate
+
+                    // Read out / set the EventType
+
+                    // Reat out / set the MrktCode
+
+                    // Read out / set the People Count
+
+                    // Read out / set the EventTime
+
+                    // Add that to the localReservations
+                }
+            }
 
             return localReservations;
+
+            // Local Fuctions
+            bool IsValidTmlReservationLine(string line)
+            {
+                return true;
+            }
         }
 
         /// <summary>
@@ -72,10 +108,46 @@ namespace GHAR_2_Class_Library
         /// <returns></returns>
         public List<Reservation> ParseEaReport(string file)
         {
+            // Check for invalid file
+            if (!File.Exists(file))
+            {
+                throw new FileNotFoundException(file);
+            }
+
             // Local Declarations
             List<Reservation> localReservations = new List<Reservation>();
+            string[] fileLines = File.ReadAllLines(file);
+
+            foreach (string line in fileLines)
+            {
+                // Check to see if line has a reservation in it
+                if (IsValidEaReservationLine(line))
+                {
+                    Reservation tmpRes = new Reservation();
+
+                    // Read out / set the Name
+
+                    // Read out / set the DepartureDate
+
+                    // Read out / set the EventType
+
+                    // Reat out / set the MrktCode
+
+                    // Read out / set the People Count
+
+                    // Read out / set the EventTime
+
+                    // Add that to the localReservations
+                }
+            }
 
             return localReservations;
+
+            // Local Fuctions
+            bool IsValidEaReservationLine(string line)
+            {
+                return true;
+            }
         }
 
         #endregion

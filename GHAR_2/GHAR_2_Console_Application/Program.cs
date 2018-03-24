@@ -8,14 +8,9 @@ namespace GHAR_2_Console_Application
 {
     class Program
     {
+        static void Main()
+        {
 
-
-
-        //bool testSwitch = DateTime.TryParse("1:00P", out DateTime _);
-
-        //if (testSwitch)
-        //{
-
-        //}
+        }
     }
 }
