@@ -16,7 +16,7 @@ namespace GHAR_2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GharMainScreenForm());
+            Application.Run(new MainForm());
         }
     }
 }

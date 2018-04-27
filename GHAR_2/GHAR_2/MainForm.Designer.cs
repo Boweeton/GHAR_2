@@ -1,6 +1,6 @@
 ﻿namespace GHAR_2
 {
-    partial class GharMainScreenForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.megasysHelper2TabControl = new System.Windows.Forms.TabControl();
             this.gateHousePage = new System.Windows.Forms.TabPage();
+            this.openGenPathsButton = new System.Windows.Forms.Button();
             this.frontDeskPage = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.megasysHelper2TabControl.SuspendLayout();
             this.gateHousePage.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +49,7 @@
             // 
             // gateHousePage
             // 
-            this.gateHousePage.Controls.Add(this.button1);
+            this.gateHousePage.Controls.Add(this.openGenPathsButton);
             this.gateHousePage.Location = new System.Drawing.Point(4, 22);
             this.gateHousePage.Name = "gateHousePage";
             this.gateHousePage.Padding = new System.Windows.Forms.Padding(3);
@@ -56,6 +57,16 @@
             this.gateHousePage.TabIndex = 0;
             this.gateHousePage.Text = "Gate House";
             this.gateHousePage.UseVisualStyleBackColor = true;
+            // 
+            // openGenPathsButton
+            // 
+            this.openGenPathsButton.Location = new System.Drawing.Point(7, 7);
+            this.openGenPathsButton.Name = "openGenPathsButton";
+            this.openGenPathsButton.Size = new System.Drawing.Size(101, 23);
+            this.openGenPathsButton.TabIndex = 0;
+            this.openGenPathsButton.Text = "Open Gen Paths";
+            this.openGenPathsButton.UseVisualStyleBackColor = true;
+            this.openGenPathsButton.Click += new System.EventHandler(this.OnOpenGenPathsButton_Click);
             // 
             // frontDeskPage
             // 
@@ -67,24 +78,15 @@
             this.frontDeskPage.Text = "Front Desk";
             this.frontDeskPage.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(77, 43);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "open child";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // GharMainScreenForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 572);
             this.Controls.Add(this.megasysHelper2TabControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "GharMainScreenForm";
+            this.Name = "MainForm";
             this.Text = "Megasys Helper 2.0";
             this.Load += new System.EventHandler(this.OnGharMainScreenFormLoad);
             this.megasysHelper2TabControl.ResumeLayout(false);
@@ -98,7 +100,7 @@
         private System.Windows.Forms.TabControl megasysHelper2TabControl;
         private System.Windows.Forms.TabPage gateHousePage;
         private System.Windows.Forms.TabPage frontDeskPage;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button openGenPathsButton;
     }
 }
 
