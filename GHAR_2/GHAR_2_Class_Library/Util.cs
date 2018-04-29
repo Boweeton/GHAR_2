@@ -63,6 +63,38 @@ namespace CS3020HW3Classes
             }
         }
 
+        /// <summary>
+        /// Returns how many line return characters are in the provided string.
+        /// </summary>
+        /// <param name="str">The "milti line" string to be analized.</param>
+        /// <returns>Returns an int representing the number of lines in the string. (May include blank lines.)</returns>
+        public static int CountLines(this string str)
+        {
+            return (str.Length - str.Replace("\n", "").Length) + 1;
+        }
+
+        /// <summary>
+        /// Returns a string file name for a Megasys raw data report.
+        /// </summary>
+        /// <param name="reportName">The name of the raw report.</param>
+        /// <param name="ext">The file extension.</param>
+        /// <returns></returns>
+        public static string CreateRawDataFileName(string reportName, string ext)
+        {
+            return $"RepotOf:_({reportName})_({DateTime.Now:s}).{ext}";
+        }
+
+        /// <summary>
+        /// Returns a string file name for the GHAR processed data
+        /// </summary>
+        /// <param name="reportName">The name of the processed report.</param>
+        /// <param name="ext">The file extension.</param>
+        /// <returns></returns>
+        public static string CreateProcessedDataFileName(string reportName, string ext)
+        {
+            return $"ProcessedDataFor:_({reportName})_({DateTime.Now:s}).{ext}";
+        }
+
         #endregion
 
         #region Protected Methods

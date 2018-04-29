@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,14 +43,46 @@ namespace GHAR_2
 
         void OnGeneratePathsSubWindowFormLoad(object sender, EventArgs e)
         {
+            // Center the form on the mainForm
             Left = mainForm.Left + ((mainForm.Width - Width) / 2);
             Top = mainForm.Top + ((mainForm.Height - Height) / 2);
+
+            // Generate the raw data paths and load them up
+            mainForm.GenerateRawGhPaths();
+            eaRawDataPathTextBox.Text = mainForm.RawEaPath;
+            tmlRawDataPathTextBox.Text = mainForm.RawTmlPath;
+        }
+
+        void OnCopyEaRawDataPathButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(eaRawDataPathTextBox.Text);
+        }
+
+        void OnCopyTmlRawDataPathButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(tmlRawDataPathTextBox.Text);
         }
 
         void OnCalculateButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            Close();
+            // Check state of files
+            if (File.Exists(mainForm.RawEaPath) && File.Exists(mainForm.RawTmlPath))
+            {
+                DialogResult = DialogResult.OK;
+                mainForm.ReadInDataAndProcess();
+                Close();
+            }
+            else
+            {
+                DialogResult localDialog = MessageBox.Show("One or both of the Raw Files are missing. Do you with to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                if (localDialog == DialogResult.Yes)
+                {
+                    DialogResult = DialogResult.OK;
+                    mainForm.ReadInDataAndProcess();
+                    Close();
+                }
+            }
         }
 
         void OnCancelButton_Click(object sender, EventArgs e)

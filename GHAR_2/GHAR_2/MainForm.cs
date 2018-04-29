@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CS3020HW3Classes;
+using GHAR_2_Class_Library;
 
 namespace GHAR_2
 {
@@ -14,7 +17,10 @@ namespace GHAR_2
     {
         #region Fields
 
-
+        readonly string currentDirectory = Directory.GetCurrentDirectory();
+        const string RawDataFolderName = "RawData";
+        const string ProcessedDataFolderName = "ProcessedData";
+        List<Reservation> masteReservations;
 
         #endregion
 
@@ -30,9 +36,13 @@ namespace GHAR_2
 
         #region Properties
 
-        public string ToursReportPath { get; set; }
+        public string RawEaPath { get; set; }
 
-        public string DayEventsReportPath { get; set; }
+        public string RawTmlPath { get; set; }
+
+        public string ProcessedOvernightsReportPath { get; set; }
+
+        public string ProcessedDayEventsReportPath { get; set; }
 
         #endregion
 
@@ -53,9 +63,21 @@ namespace GHAR_2
 
         #region HelperMethods
 
-        public void GenerateGhPaths()
+        public void GenerateRawGhPaths()
         {
+            RawEaPath = $"{currentDirectory}/{RawDataFolderName}/{Util.CreateRawDataFileName("EA", "txt")}";
+            RawTmlPath = $"{currentDirectory}/{RawDataFolderName}/{Util.CreateRawDataFileName("TML", "txt")}";
+        }
 
+        void GenerateProcessedGhPaths()
+        {
+            ProcessedOvernightsReportPath = $"{currentDirectory}/{ProcessedDataFolderName}/{Util.CreateProcessedDataFileName("Overnights", "txt")}";
+            ProcessedDayEventsReportPath = $"{currentDirectory}/{ProcessedDataFolderName}/{Util.CreateProcessedDataFileName("DayEvents", "txt")}";
+        }
+
+        public void ReadInDataAndProcess()
+        {
+            BackColor = Color.Magenta;
         }
 
         #endregion
