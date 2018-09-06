@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace GHAR_2_Class_Library
@@ -82,7 +81,7 @@ namespace GHAR_2_Class_Library
 
                     // Read out / set the EventType
 
-                    // Reat out / set the MrktCode
+                    // Read out / set the MrktCode
 
                     // Read out / set the People Count
 
@@ -94,7 +93,7 @@ namespace GHAR_2_Class_Library
 
             return localReservations;
 
-            // Local Fuctions
+            // Local Functions
             bool IsValidTmlReservationLine(string line)
             {
                 return true;
@@ -131,7 +130,7 @@ namespace GHAR_2_Class_Library
 
                     // Read out / set the EventType
 
-                    // Reat out / set the MrktCode
+                    // Read out / set the MrktCode
 
                     // Read out / set the People Count
 
@@ -143,7 +142,7 @@ namespace GHAR_2_Class_Library
 
             return localReservations;
 
-            // Local Fuctions
+            // Local Functions
             bool IsValidEaReservationLine(string line)
             {
                 return true;

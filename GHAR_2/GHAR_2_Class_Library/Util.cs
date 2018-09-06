@@ -66,7 +66,7 @@ namespace CS3020HW3Classes
         /// <summary>
         /// Returns how many line return characters are in the provided string.
         /// </summary>
-        /// <param name="str">The "milti line" string to be analized.</param>
+        /// <param name="str">The "multi line" string to be analized.</param>
         /// <returns>Returns an int representing the number of lines in the string. (May include blank lines.)</returns>
         public static int CountLines(this string str)
         {
@@ -81,7 +81,7 @@ namespace CS3020HW3Classes
         /// <returns></returns>
         public static string CreateRawDataFileName(string reportName, string ext)
         {
-            return $"RepotOf:_({reportName})_({DateTime.Now:s}).{ext}";
+            return $"ReportOf:_({reportName})_({DateTime.Now:s}).{ext}";
         }
 
         /// <summary>
