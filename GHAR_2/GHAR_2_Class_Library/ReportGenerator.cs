@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace GHAR_2_Class_Library
 {
-    public class Reservation
+    class ReportGenerator
     {
         #region Fields
 
-
+        List<Reservation> TotalReservations;
 
         #endregion
 
@@ -20,18 +21,6 @@ namespace GHAR_2_Class_Library
         #region Properties
 
         public string Name { get; set; }
-
-        public DateTime DepartDate { get; set; }
-
-        public EventType Event { get; set; }
-
-        public string MrktCode { get; set; }
-
-        public int Count { get; set; }
-
-        public DateTime EventTime { get; set; }
-
-        public List<string> OtherEventCodes { get; set; }
 
         #endregion
 
