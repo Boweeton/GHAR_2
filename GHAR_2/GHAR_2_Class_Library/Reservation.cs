@@ -31,7 +31,7 @@ namespace GHAR_2_Class_Library
 
         public DateTime EventTime { get; set; }
 
-        public List<string> OtherEventCodes { get; set; }
+        public List<OtherEventCode> OtherEventCodes { get; set; } = new List<OtherEventCode>();
 
         #endregion
 

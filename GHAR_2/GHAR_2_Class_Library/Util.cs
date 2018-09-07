@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using GHAR_2_Class_Library;
 
 namespace CS3020HW3Classes
 {
@@ -93,6 +94,55 @@ namespace CS3020HW3Classes
         public static string CreateProcessedDataFileName(string reportName, string ext)
         {
             return $"ProcessedDataFor:_({reportName})_({DateTime.Now:s}).{ext}";
+        }
+
+        /// <summary>
+        /// Returns a OtherEventCode form of the reservation input.
+        /// </summary>
+        /// <param name="input">The input Reservation.</param>
+        /// <returns></returns>
+        public static OtherEventCode CreateOtherEventCode(Reservation res)
+        {
+            // Local Declarations
+            OtherEventCode tmp = new OtherEventCode();
+
+            // Find the time of the Reservation
+            tmp.Time = res.EventTime;
+
+            // Set the compacted display code
+            switch (res.Event)
+            {
+                case EventType.Overnight:
+                    tmp.Code = 
+                    break;
+
+                case EventType.Tea:
+                    break;
+
+                case EventType.Tour:
+                    break;
+
+                case EventType.Concert:
+                    break;
+
+                case EventType.Dinner:
+                    break;
+
+                case EventType.Madrigal:
+                    break;
+
+                case EventType.SpecialEvent:
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            // Internal Methods
+            string CreateCompactedTimeStamp(DateTime dt)
+            {
+
+            }
         }
 
         #endregion
