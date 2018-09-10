@@ -15,8 +15,10 @@ namespace GHAR_2
         readonly string currentDirectory = Directory.GetCurrentDirectory();
         const string RawDataFolderName = "RawData";
         const string ProcessedDataFolderName = "ProcessedData";
-        List<Reservation> MasterReservations;
-        ReportParser Parser = new ReportParser();
+        List<Reservation> masterReservations;
+        readonly ReportParser parser = new ReportParser();
+        ReportGenerator reportGenerator = new ReportGenerator();
+
 
         #endregion
 
@@ -74,27 +76,40 @@ namespace GHAR_2
         public void ReadInDataAndProcess()
         {
             // Clear out the current list
-            MasterReservations = new List<Reservation>();
+            masterReservations = new List<Reservation>();
 
             // Read in the TML report
             if (File.Exists(RawTmlPath))
             {
-                foreach (Reservation res in Parser.ParseTmlReport(RawTmlPath))
+                foreach (Reservation res in parser.ParseTmlReport(RawTmlPath))
                 {
-                    MasterReservations.Add(res);
+                    masterReservations.Add(res);
                 }
             }
 
             // Read in the EA report
             if (File.Exists(RawEaPath))
             {
-                foreach (Reservation res in Parser.ParseTmlReport(RawEaPath))
+                foreach (Reservation res in parser.ParseTmlReport(RawEaPath))
                 {
-                    MasterReservations.Add(res);
+                    masterReservations.Add(res);
                 }
             }
 
-            BackColor = Color.Magenta;
+            // Generate Reports
+            reportGenerator.SetMasterReservations(masterReservations);
+
+            // Generate OtherEventCodes
+            reportGenerator.CalculateOtherEventCodes();
+
+            // Generate processed report destination paths
+            GenerateProcessedGhPaths();
+
+            // Create the 2 new reports
+            reportGenerator.CreateDayEventsReport(ProcessedDayEventsReportPath);
+            reportGenerator.CreateOvernightsReport(ProcessedOvernightsReportPath);
+
+            gateHousePage.BackColor = Color.Magenta;    // Signal execution point reached
         }
 
         #endregion
