@@ -19,7 +19,11 @@ namespace GHAR_2_Class_Library
 
         #region Properties
 
-        public string Name { get; set; }
+        public string FullNameEntry { get; set; }
+
+        public string LastName { get; set; }
+
+        public string FirstName { get; set; }
 
         public DateTime DepartDate { get; set; }
 

@@ -42,7 +42,9 @@ namespace GHAR_2_Class_Library
             {
                 foreach (Reservation checkRes in MasterReservations)
                 {
-                    if (currentRes.Name == checkRes.Name && currentRes != checkRes)
+                    if (currentRes.LastName == checkRes.LastName &&
+                        currentRes.FirstName == checkRes.FirstName &&
+                        currentRes != checkRes)
                     {
                         currentRes.OtherEventCodes.Add(Util.CreateOtherEventCode(checkRes));
                     }
