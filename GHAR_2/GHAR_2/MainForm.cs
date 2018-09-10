@@ -15,7 +15,8 @@ namespace GHAR_2
         readonly string currentDirectory = Directory.GetCurrentDirectory();
         const string RawDataFolderName = "RawData";
         const string ProcessedDataFolderName = "ProcessedData";
-        List<Reservation> masteReservations;
+        List<Reservation> MasterReservations;
+        ReportParser Parser = new ReportParser();
 
         #endregion
 
@@ -72,6 +73,27 @@ namespace GHAR_2
 
         public void ReadInDataAndProcess()
         {
+            // Clear out the current list
+            MasterReservations = new List<Reservation>();
+
+            // Read in the TML report
+            if (File.Exists(RawTmlPath))
+            {
+                foreach (Reservation res in Parser.ParseTmlReport(RawTmlPath))
+                {
+                    MasterReservations.Add(res);
+                }
+            }
+
+            // Read in the EA report
+            if (File.Exists(RawEaPath))
+            {
+                foreach (Reservation res in Parser.ParseTmlReport(RawEaPath))
+                {
+                    MasterReservations.Add(res);
+                }
+            }
+
             BackColor = Color.Magenta;
         }
 

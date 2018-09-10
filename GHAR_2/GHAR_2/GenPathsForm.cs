@@ -23,7 +23,7 @@ namespace GHAR_2
         #region EventMethods
 
         /// <summary>
-        /// Ovveride the Params of the form to disallow the red X button in the corner.
+        /// Override the Params of the form to disallow the red X button in the corner.
         /// </summary>
         protected override CreateParams CreateParams
         {
