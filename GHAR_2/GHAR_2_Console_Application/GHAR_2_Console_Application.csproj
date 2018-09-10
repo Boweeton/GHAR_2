@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GHAR_2_Class_Library\GHAR_2_Class_Library.csproj">
+      <Project>{3a918878-7bf5-4dd8-b2f7-7704e071f0ca}</Project>
+      <Name>GHAR_2_Class_Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

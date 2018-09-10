@@ -107,41 +107,53 @@ namespace CS3020HW3Classes
             OtherEventCode tmp = new OtherEventCode();
 
             // Find the time of the Reservation
-            tmp.Time = res.EventTime;
+            tmp.Hour = res.Hour;
+            tmp.Minute = res.Minute;
 
             // Set the compacted display code
             switch (res.Event)
             {
                 case EventType.Overnight:
-                    tmp.Code = 
+                    tmp.Code = "(Ov)";
                     break;
 
                 case EventType.Tea:
+                    tmp.Code = $"(Te-{CreateCompactedTimeStamp(tmp.Hour, tmp.Minute)})";
                     break;
 
                 case EventType.Tour:
+                    tmp.Code = $"(Tr-{CreateCompactedTimeStamp(tmp.Hour, tmp.Minute)})";
                     break;
 
                 case EventType.Concert:
+                    tmp.Code = $"(Ct-{CreateCompactedTimeStamp(tmp.Hour, tmp.Minute)})";
                     break;
 
                 case EventType.Dinner:
+                    tmp.Code = $"(Dn-{CreateCompactedTimeStamp(tmp.Hour, tmp.Minute)})";
                     break;
 
                 case EventType.Madrigal:
+                    tmp.Code = "(Madrigal)";
                     break;
 
                 case EventType.SpecialEvent:
+                    tmp.Code = "(Sp-Event)";
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            // Internal Methods
-            string CreateCompactedTimeStamp(DateTime dt)
-            {
+            return tmp;
 
+            // Local Functions
+            string CreateCompactedTimeStamp(int h, int m)
+            {
+                string hour = h.ToString();
+                string min = m == 0 ? string.Empty : $":{m.ToString().Trim('0')}";
+
+                return hour + min;
             }
         }
 

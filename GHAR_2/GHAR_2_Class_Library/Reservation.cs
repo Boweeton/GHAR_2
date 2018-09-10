@@ -29,7 +29,9 @@ namespace GHAR_2_Class_Library
 
         public int Count { get; set; }
 
-        public DateTime EventTime { get; set; }
+        public int Hour { get; set; }
+
+        public int Minute { get; set; }
 
         public List<OtherEventCode> OtherEventCodes { get; set; } = new List<OtherEventCode>();
 
