@@ -29,7 +29,7 @@ namespace GHAR_2_Class_Library
 
         public EventType Event { get; set; }
 
-        public string MrktCode { get; set; }
+        public string CresCode { get; set; }
 
         public int Count { get; set; }
 

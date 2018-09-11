@@ -84,7 +84,7 @@ namespace GHAR_2_Class_Library
                     // Read out / set the EventType
                     tmpRes.Event = FindEventType(line.Substring(TmlEventBase, TmlEventLength));
 
-                    // Read out / set the MrktCode
+                    // Read out / set the CresCode
 
                     // Read out / set the People Count
                     tmpRes.Count = int.Parse(line.Substring(TmlCountBase, TmlCountLength));
@@ -92,12 +92,16 @@ namespace GHAR_2_Class_Library
                     // Read out / set the EventTime
                     string[] timeComponents = line.Substring(TmlTimeBase, TmlTimeLength).Split(':');
                     tmpRes.Hour = int.Parse(timeComponents[0].Trim());
-                    tmpRes.Minute = int.Parse(timeComponents[1].Trim());
+                    tmpRes.Minute = int.Parse(timeComponents[1].Trim().Remove(2,1));
 
                     // Parse the LastName and the FirstName
                     string[] names = tmpRes.FullNameEntry.Split(',');
                     tmpRes.FirstName = names[0].Trim();
-                    tmpRes.LastName = names[1].Trim();
+
+                    if (names.Length > 1)
+                    {
+                        tmpRes.LastName = names[1].Trim();
+                    }
 
                     // Add that to the localReservations
                     localReservations.Add(tmpRes);
@@ -109,7 +113,25 @@ namespace GHAR_2_Class_Library
             // Local Functions
             bool IsValidTmlReservationLine(string line)
             {
-                return true;    // ToDo: fix this
+                return line.Length >= TmlDateBase + TmlDateLength && DateTime.TryParse(line.Substring(TmlDateBase, TmlDateLength), out DateTime _);
+            }
+
+            EventType FindEventType(string code)
+            {
+                // Switch through all expected codes
+                switch (code.ToLower())
+                {
+                    case "tour":
+                        return EventType.Tour;
+                    case "tourcr":
+                        return EventType.Tour;
+                    case "concer":
+                        return EventType.Concert;
+                    case "dinner":
+                        return EventType.Dinner;
+                    default:
+                        return EventType.SpecialEvent;
+                }
             }
         }
 
@@ -141,13 +163,13 @@ namespace GHAR_2_Class_Library
                     tmpRes.FullNameEntry = line.Substring(EaNameBase, EaNameLength);
 
                     // Read out / set the DepartureDate
-                    tmpRes.DepartDate = DateTime.Parse(line.Substring(EaDepartDateBase, EaNameLength));
+                    tmpRes.DepartDate = DateTime.Parse(line.Substring(EaDepartDateBase, EaDepartDateLength));
+
+                    // Read out / set the CresCode
+                    tmpRes.CresCode = line.Substring(EaCresBase, EaCresLength);
 
                     // Read out / set the EventType
-                    tmpRes.Event = FindEventType(line.Substring(EaCresBase, EaCresLength));
-
-                    // Read out / set the MrktCode
-                    tmpRes.MrktCode = line.Substring(EaMrktCodeBase, EaMrktCodeLength);
+                    tmpRes.Event = FindEventType(tmpRes.CresCode);
 
                     // Read out / set the People Count
                     tmpRes.Count = int.Parse(line.Substring(EaCountBase, EaCountLength));
@@ -176,10 +198,17 @@ namespace GHAR_2_Class_Library
                     // Parse the LastName and the FirstName
                     string[] names = tmpRes.FullNameEntry.Split(',');
                     tmpRes.FirstName = names[0].Trim();
-                    tmpRes.LastName = names[1].Trim();
+
+                    if (names.Length > 1)
+                    {
+                        tmpRes.LastName = names[1].Trim();
+                    }
 
                     // Add that to the localReservations
-                    localReservations.Add(tmpRes);
+                    if (tmpRes.Event != EventType.Tour)
+                    {
+                        localReservations.Add(tmpRes);
+                    }
                 }
             }
 
@@ -188,7 +217,25 @@ namespace GHAR_2_Class_Library
             // Local Functions
             bool IsValidEaReservationLine(string line)
             {
-                return true;    // Todo: fix this
+                return line.Length >= EaDepartDateBase + EaDepartDateLength && DateTime.TryParse(line.Substring(EaDepartDateBase, EaDepartDateLength), out DateTime _);
+            }
+
+            EventType FindEventType(string code)
+            {
+                // Switch through all expected codes
+                switch (code.ToLower())
+                {
+                    case "tour":
+                        return EventType.Tour;
+                    case "tourcr":
+                        return EventType.Tour;
+                    case "team":
+                        return EventType.TeaAm;
+                    case "tepm":
+                        return EventType.TeaPm;
+                    default:
+                        return EventType.Overnight;
+                }
             }
         }
 
@@ -202,17 +249,7 @@ namespace GHAR_2_Class_Library
 
         #region Private Methods
 
-        static EventType FindEventType(string code)
-        {
-            // Switch through all expected codes
-            switch (code.ToLower())
-            {
-                case "tour":
-                    return EventType.Tour;
-                default:
-                    return EventType.SpecialEvent;
-            }
-        }
+        
 
         #endregion
 
