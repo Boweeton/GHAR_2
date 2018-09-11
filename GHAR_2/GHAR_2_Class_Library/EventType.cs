@@ -3,7 +3,8 @@
     public enum EventType
     {
         Overnight,
-        Tea,
+        TeaAm,
+        TeaPm,
         Tour,
         Concert,
         Dinner,

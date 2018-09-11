@@ -117,7 +117,11 @@ namespace CS3020HW3Classes
                     tmp.Code = "(Ov)";
                     break;
 
-                case EventType.Tea:
+                case EventType.TeaAm:
+                    tmp.Code = $"(Te-{CreateCompactedTimeStamp(tmp.Hour, tmp.Minute)})";
+                    break;
+
+                case EventType.TeaPm:
                     tmp.Code = $"(Te-{CreateCompactedTimeStamp(tmp.Hour, tmp.Minute)})";
                     break;
 
