@@ -52,6 +52,27 @@ namespace GHAR_2_Class_Library
             }
         }
 
+        public List<Reservation> TESTCalculateOtherEventCodes(List<Reservation> testList)
+        {
+            // Loop through the TotalReservations list
+            foreach (Reservation currentRes in testList)
+            {
+                foreach (Reservation checkRes in testList)
+                {
+                    if (currentRes.LastName == checkRes.LastName &&
+                        currentRes.FirstName == checkRes.FirstName &&
+                        currentRes != checkRes &&
+                        currentRes.DepartDate == checkRes.DepartDate &&
+                        !checkRes.IsFullRepeat)
+                    {
+                        currentRes.OtherEventCodes.Add(Util.CreateOtherEventCode(checkRes));
+                    }
+                }
+            }
+
+            return testList;
+        }
+
         public void CreateDayEventsReport(string destPath)
         {
 

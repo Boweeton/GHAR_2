@@ -39,6 +39,8 @@ namespace GHAR_2_Class_Library
 
         public List<OtherEventCode> OtherEventCodes { get; set; } = new List<OtherEventCode>();
 
+        public bool IsFullRepeat { get; set; } = false;
+
         #endregion
 
         #region Methods

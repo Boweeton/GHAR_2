@@ -14,24 +14,60 @@ namespace GHAR_2_Console_Application
         static void Main()
         {
             ReportParser parser = new ReportParser();
+            ReportGenerator generator = new ReportGenerator();
             List<Reservation> masterList = new List<Reservation>();
 
             // read in the substring of the file
-            foreach (string file in Directory.EnumerateFileSystemEntries(@"E:\Data\test"))
+            foreach (string file in Directory.EnumerateFileSystemEntries(@"E:\Data\RawDataReports"))
             {
-                List<Reservation> tmpList = parser.ParseEaReport(file);
+                List<Reservation> tmpList = parser.DetectReportTypeAndParse(file);
 
-                foreach (Reservation res in tmpList)
+                if (tmpList != null)
                 {
-                    masterList.Add(res);
+                    foreach (Reservation res in tmpList)
+                    {
+                        masterList.Add(res);
+                    }
                 }
             }
 
+            masterList = masterList.OrderBy(o => o.FirstName).ToList();
+            masterList = masterList.OrderBy(o => o.LastName).ToList();
+            masterList = masterList.OrderBy(o => o.Event).ToList();
+            masterList = masterList.OrderBy(o => o.DepartDate).ToList();
+
+            // Shave repeats
             foreach (Reservation res in masterList)
             {
-                if (res.Event != EventType.Tour)
+                foreach (Reservation checkRes in masterList)
                 {
-                    Console.WriteLine($"{res.LastName}, {res.FirstName}\t\t{res.Event}\t{res.DepartDate:M/d}");
+                    if (res != checkRes &&
+                        res.FirstName == checkRes.FirstName &&
+                        res.LastName == checkRes.LastName &&
+                        res.Event == checkRes.Event &&
+                        res.Count == checkRes.Count &&
+                        res.DepartDate == checkRes.DepartDate &&
+                        res.Hour == checkRes.Hour)
+                    {
+                        checkRes.IsFullRepeat = true;
+                    }
+                }
+            }
+
+            masterList = generator.TESTCalculateOtherEventCodes(masterList);
+
+            foreach (Reservation res in masterList)
+            {
+                if (!res.IsFullRepeat)
+                {
+                    Console.Write($"{res.LastName},{res.FirstName}\t\t{res.Event}\t\t{res.DepartDate:M/d}\t\t");
+
+                    foreach (OtherEventCode code in res.OtherEventCodes)
+                    {
+                        Console.Write($"{code}");
+                    }
+
+                    Console.WriteLine();
                 }
             }
 

@@ -33,6 +33,10 @@ namespace GHAR_2_Class_Library
         const int EaCountBase = 91;
         const int EaCountLength = 5;
 
+        // String constants for parse detection [used in Megasys .txt reports (March 2018)]
+        const string TmlDetectionString = "Ticket Master Listing";
+        const string EaDetectionString = "Expected Arrivals";
+
         #endregion
 
         #region Constructors
@@ -50,6 +54,38 @@ namespace GHAR_2_Class_Library
         #region Methods
 
         #region Public Methods
+
+        /// <summary>
+        /// Attempts to find a pre-defined detection string withing the given file and chooses and calls the appropriate parse method.
+        /// </summary>
+        /// <param name="file">The path of the given file.</param>
+        /// <returns></returns>
+        public List<Reservation> DetectReportTypeAndParse(string file)
+        {
+            // Check for invalid file
+            if (!File.Exists(file))
+            {
+                throw new FileNotFoundException(file);
+            }
+
+            // Read in all the lines from the file
+            foreach (string line in File.ReadAllLines(file))
+            {
+                // Check for TML 
+                if (line.Contains(TmlDetectionString))
+                {
+                    return ParseTmlReport(file);
+                }
+
+                // Check for EA
+                if (line.Contains(EaDetectionString))
+                {
+                    return ParseEaReport(file);
+                }
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// Collects all the Reservations within a "Ticket Master Listing" (TML) Report [used in Megasys .txt reports (March 2018)].
@@ -76,13 +112,13 @@ namespace GHAR_2_Class_Library
                     Reservation tmpRes = new Reservation();
 
                     // Read out / set the Name
-                    tmpRes.FullNameEntry = line.Substring(TmlNameBase, TmlNameLength);
+                    tmpRes.FullNameEntry = line.Substring(TmlNameBase, TmlNameLength).Trim();
 
                     // Read out / set the DepartureDate
-                    tmpRes.DepartDate = DateTime.Parse(line.Substring(TmlDateBase,TmlDateLength));
+                    tmpRes.DepartDate = DateTime.Parse(line.Substring(TmlDateBase,TmlDateLength).Trim());
 
                     // Read out / set the EventType
-                    tmpRes.Event = FindEventType(line.Substring(TmlEventBase, TmlEventLength));
+                    tmpRes.Event = FindEventType(line.Substring(TmlEventBase, TmlEventLength).Trim());
 
                     // Read out / set the CresCode
 
@@ -160,13 +196,13 @@ namespace GHAR_2_Class_Library
                     Reservation tmpRes = new Reservation();
 
                     // Read out / set the Name
-                    tmpRes.FullNameEntry = line.Substring(EaNameBase, EaNameLength);
+                    tmpRes.FullNameEntry = line.Substring(EaNameBase, EaNameLength).Trim();
 
                     // Read out / set the DepartureDate
-                    tmpRes.DepartDate = DateTime.Parse(line.Substring(EaDepartDateBase, EaDepartDateLength));
+                    tmpRes.DepartDate = DateTime.Parse(line.Substring(EaDepartDateBase, EaDepartDateLength).Trim());
 
                     // Read out / set the CresCode
-                    tmpRes.CresCode = line.Substring(EaCresBase, EaCresLength);
+                    tmpRes.CresCode = line.Substring(EaCresBase, EaCresLength).Trim();
 
                     // Read out / set the EventType
                     tmpRes.Event = FindEventType(tmpRes.CresCode);
@@ -249,7 +285,7 @@ namespace GHAR_2_Class_Library
 
         #region Private Methods
 
-        
+
 
         #endregion
 
